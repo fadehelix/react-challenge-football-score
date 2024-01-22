@@ -1,7 +1,7 @@
 ## Iteration 1: Display Static UI
 - [x] Setup npm workspaces 
 - [x] Setup project with Vite, React, Typescript
-- [ ] Create static UI following the [wireframe](./ui-wireframe.jpg)
+- [x] Create static UI following the [wireframe](./ui-wireframe.jpg)
 ## Iteration 2: Real simulation directly on the UI
 - [ ] Setup the `engine` - it provides data and business logic for simulation
 - [ ] Implement the simulation logic following the [business requirements](./business-requirements.md) in the `engine` package
