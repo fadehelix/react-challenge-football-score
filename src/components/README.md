@@ -1,0 +1,1 @@
+This folder contains generic "smart" and "dumb" components.
