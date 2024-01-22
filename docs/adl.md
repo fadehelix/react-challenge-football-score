@@ -16,4 +16,7 @@ I chose react because I am most familiar with it. It is also the most popular fr
 ### 2024-01-22 - Use TailwindCSS
 [TailwindCSS](https://tailwindcss.com/) is an efficient library to build UI prototypes and MVPs.
 Thanks to its utility-first approach, it is easy to build a UI without writing any CSS.
-
+### 2024-01-22 - Use tailwind-merge utility
+[tailwind-merge](https://www.npmjs.com/package/tailwind-merge) is a utility that allows us to merge TailwindCSS classes. 
+#### Use case: 
+Pass custom CSS class `p-8` down to the Tile component which already has `p-4` defined. Without `tailwind-merge` we would end up with both `p-4 p-8` in the final HTML. With `tailwind-merge` we get `p-8` only.
