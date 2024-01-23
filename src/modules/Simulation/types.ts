@@ -1,1 +1,1 @@
-export type SimulationStatus = 'idle' | 'running' | 'finished';
+export type SimulationStatus = 'idle' | 'running' | 'finished' | 'restarted';

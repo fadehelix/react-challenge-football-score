@@ -5,19 +5,22 @@ import { SimulationStatus } from '.';
 
 // Helpers
 
+
 const useSimulation = (initialMatches: Match[]) => {
   const [matches, setMatches] = useState<Match[]>(initialMatches);
   const [currentTime, setCurrentTime] = useState(0);
-  const [isRunning, setIsRunning] = useState<boolean>(false);
   const [status, setStatus] = useState<SimulationStatus>('idle');
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
-    if (currentTime >= 90) {
-      setIsRunning(false);
-      setStatus('finished');
-    }
-    if (isRunning) {
+    if (status === 'restarted') {
+      setCurrentTime(0);
+      setMatches(initialMatches);
+      setStatus('running');
+    } else if (status === 'running') {
+      if (currentTime >= 90) {
+        setStatus('finished');
+      }
       interval = setInterval(() => {
         setCurrentTime((prevTime) => prevTime + 10);
         const matchesWithUpdatedScore = updateScore(matches, getMatchId(matches), getMatchSide());
@@ -26,9 +29,9 @@ const useSimulation = (initialMatches: Match[]) => {
     }
 
     return () => clearInterval(interval);
-  }, [isRunning, currentTime, matches]);
+  }, [currentTime, matches, status]);
 
-  return { matches, currentTime, isRunning, setIsRunning, setCurrentTime, setMatches, status, setStatus };
+  return { matches, currentTime, status, changeStatus: setStatus };
 };
 
 export { useSimulation };

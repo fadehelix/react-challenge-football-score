@@ -3,18 +3,17 @@ import { SimulationStatus } from '../types';
 import { Button } from '../../../components';
 
 type ActionsProps = {
-  simulationState: SimulationStatus;
-  startHandler: () => void;
-  finishHandler: () => void;
-  restartHandler: () => void;
+  simulationStatus: { get: SimulationStatus; set: (status: SimulationStatus) => void };
 } & React.HTMLProps<HTMLDivElement>;
 
-const Actions = ({ simulationState, startHandler, finishHandler, restartHandler, ...props }: ActionsProps) => {
+const Actions = ({ simulationStatus: simulationState, ...props }: ActionsProps) => {
   return (
     <div {...props} className={twMerge('flex w-full justify-center', props.className)}>
-      {simulationState === 'idle' && <Button onClick={() => startHandler()}>Start</Button>}
-      {simulationState === 'running' && <Button onClick={() => finishHandler()}>Finish</Button>}
-      {simulationState === 'finished' && <Button onClick={() => restartHandler()}>Restart</Button>}
+      {simulationState.get === 'idle' && <Button onClick={() => simulationState.set('running')}>Start</Button>}
+      {(simulationState.get === 'running' || simulationState.get === 'restarted') && (
+        <Button onClick={() => simulationState.set('finished')}>Finish</Button>
+      )}
+      {simulationState.get === 'finished' && <Button onClick={() => simulationState.set('restarted')}>Restart</Button>}
     </div>
   );
 };
