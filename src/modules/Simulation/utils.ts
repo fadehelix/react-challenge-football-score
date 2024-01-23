@@ -30,3 +30,13 @@ export function updateScore(matches: Match[], matchId: number, side: number): Ma
   updatedMatches[matchIndex].scores[side] += 1;
   return updatedMatches;
 }
+
+/**
+ * Get the total number of goals in all matches combined.
+ * 
+ * @param matches - An array of Match objects.
+ * @returns The total number of goals in the matches.
+ */
+export function calculateTotalGoals(matches: Match[]) {
+  return matches.reduce((sum, match) => sum + match.scores[0] + match.scores[1], 0);
+}
