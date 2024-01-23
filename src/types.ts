@@ -1,11 +1,3 @@
-export enum Side {
-  Host,
-  Guest,
-}
-
-export type Teams = [Team, Team];
-export type Scores = [Score, Score];
-
 // Models - reflect the domain
 export type Score = number;
 export type Team = {
@@ -16,3 +8,7 @@ export type Match = {
   teams: Teams;
   scores: Scores;
 };
+
+// Helpers
+export type Teams = [Team, Team];
+export type Scores = [Score, Score];

@@ -9,7 +9,7 @@ type ScoreBoardProps = {
 const ScoreBoard = ({ matches, ...props }: ScoreBoardProps) => {
   return (
     <div {...props} className={twMerge('w-full', props.className)}>
-      {matches && matches.map((match, index) => <Row key={index} teams={match.teams} scores={match.scores} />)}
+      {matches && matches.map((match) => <Row key={match.id} teams={match.teams} scores={match.scores} />)}
     </div>
   );
 };
